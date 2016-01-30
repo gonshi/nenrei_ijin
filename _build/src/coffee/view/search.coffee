@@ -622,6 +622,7 @@ class Search extends EventDispatcher
                             @dispatch "FIN_INTRO"
 
                             # ランダムでアニメーションを流す
+                            ###
                             if location.search == "?columbus"
                               @anim_timer = setTimeout =>
                                 @animIllust "edison"
@@ -633,6 +634,7 @@ class Search extends EventDispatcher
                                   @ILLUST_NAME_ARR.length)]
                                 )
                               , Math.random() * 5000 + 5000
+                            ###
 
                             @fin_intro = true
 
@@ -682,10 +684,12 @@ class Search extends EventDispatcher
       href: "#{ @WIKI_LINK_ORIGIN }#{ encodeURIComponent( _info.name ) }"
 
     # set social text
+    _txt = encodeURIComponent( "#{ @$result.find( ".info" ).text().
+           replace( /\n| |　/g, "" ) } - #{ @$tweet_a.attr "data-title" }" )
+
     @$tweet_a.attr(
       "href": "http://twitter.com/share?url=#{@$tweet_a.attr "data-url"}" +
-      "&text=#{ encodeURIComponent( "#{ @$result.find( ".info" ).text().
-      replace( /\n| |　/g, "" ) } - #{ @$tweet_a.attr "data-title" }" ) }"
+      "&text=#{ _txt }"
     )
 
     @$facebook.attr "data-name": @$result.find( ".info" ).text().
@@ -701,8 +705,12 @@ class Search extends EventDispatcher
     else
       @$name.css fontSize: 36
 
-    @$result.css opacity: 1
-    @$result.find( ".info" ).css opacity: 1
+    @$result.css
+      opacity: 1
+      backgroundColorAlpha: 1
+      borderColorAlpha: 1
+
+    @$result.find( ".info" ).velocity( "finish" ).velocity opacity: 1
     @$result.find( ".portrait" ).show()
 
     if _info.portrait.length > 0
@@ -765,6 +773,7 @@ class Search extends EventDispatcher
       @$result_container.removeClass( "nobody" ).hide()
 
       # ランダムで次のアニメーションを流す
+      ###
       if @ILLUST_NAME_ARR.length > 0
         @anim_timer = setTimeout =>
           @animIllust(
@@ -772,6 +781,7 @@ class Search extends EventDispatcher
             @ILLUST_NAME_ARR.length)]
           )
         , Math.random() * 5000 + 5000
+      ###
 
   setWinSize: ( win_width, win_height) ->
     @win_width = win_width
