@@ -78,7 +78,7 @@ class Social
     $( ".facebook" ).on "click", ( e )->
       FB.ui
         method: 'share'
-        href: $(e.currentTarget).attr "data-url"
+        name: $(e.currentTarget).attr "data-name"
         quote: $(e.currentTarget).attr "data-description"
 
     # tweet
