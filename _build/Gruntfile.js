@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:temp',
             'browserify',
-            'coffeelint',
+            // 'coffeelint',
             'copy:img',
             'copy:js',
             'copy:audio',
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:prod',
             'browserify',
-            'coffeelint',
+            // 'coffeelint',
             'uglify:apps',
             'copy:imgProd',
             'copy:jsProd',
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:prod',
             'browserify',
-            'coffeelint',
+            // 'coffeelint',
             'uglify:apps',
             'copy:imgProd',
             'copy:jsProd',
